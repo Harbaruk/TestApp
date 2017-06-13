@@ -1,23 +1,38 @@
 ﻿<div class="container">
-    <div *ngFor="let product of products">
+    <button class="col-xs-10 btn-info glyphicon-align-center" data-toggle="collapse" data-target="#colldivsave">Додати</button>
+    <div class="col-lg-10" *ngFor="let product of products; let i = index;">
         <div class="list-group-item">
             <div class="info-header">
-                <span class="text-name medium-bold-plus-text">{{product.Name}}</span>
+                <span class="text-name medium-bold-plus-text">{{product.Model}}</span>
                 <span class="text-name medium-bold-plus-text">{{product.Price}}</span>
                 <span class="text-name medium-bold-plus-text">{{product.Description}}</span>
-                <button type="button" class="btn btn-danger btn-xs btn-user-details pull-right" (click)="delete()" data-toggle="modal" data-target="#myModal">Delete</button>
-                <button type="button" class="btn btn-info btn-xs btn-user-details pull-right" (click)="edit()" data-toggle="modal" data-target="#myModal">Edit</button>
+                <button type="button" class="btn btn-danger btn-xs btn-user-details pull-right" (click)="delete(product.Id)">Delete</button>
+                <a class="btn btn-info btn-xs btn-user-details pull-right" (click)="edit(i)" data-toggle="collapse" data-target="#colldiv">Edit</a>
             </div>
         </div>
     </div>
+    <br />
+    <hr />
+    <div id="colldiv" class="col-lg-10 collapse" data-toggle="collapse">
+        <label>Модель :</label><input type="text" [(ngModel)]="curr_product.Model" />
+        <br />
+        <label>Ціна :</label><input type="text" [(ngModel)]="curr_product.Price" />
+        <br />
+        <label>Компанія :</label><input type="text" [(ngModel)]="curr_product.Company" />
+        <br />
+        <label>Опис :</label><input type="text" [(ngModel)]="curr_product.Description" />
+        <button class="btn-info" (click)="update()">Зберегти</button>
+    </div>
+    <div id="colldivsave" class="col-lg-10 collapse" data-toggle="collapse">
+        <br />
+        <hr />
+        <label>Модель :</label><input type="text" [(ngModel)]="new_product.Model" />
+        <br />
+        <label>Ціна :</label><input type="text" [(ngModel)]="new_product.Price" />
+        <br />
+        <label>Компанія :</label><input type="text" [(ngModel)]="new_product.Company" />
+        <br />
+        <label>Опис :</label><input type="text" [(ngModel)]="new_product.Description" />
+        <button class="btn-info" (click)="save()">Зберегти</button>
+    </div>
 </div>
-<button type="button" class="btn btn-default" (click)="modal.open()">Open me!</button>
-<modal #modal>
-    <modal-header [show-close]="true">
-        <h4 class="modal-title">I'm a modal!</h4>
-    </modal-header>
-    <modal-body>
-        Hello World!
-    </modal-body>
-    <modal-footer [show-default-buttons]="true"></modal-footer>
-</modal>

@@ -55,7 +55,7 @@ namespace TestApp.WebApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("update")]
         public IHttpActionResult Edit(PhoneEditModel model)
         {
@@ -75,7 +75,7 @@ namespace TestApp.WebApi.Controllers
         }
 
         [HttpDelete]
-        [Route("delete")]
+        [Route("delete/{id:int}")]
         public IHttpActionResult Delete(int id)
         {
             _phonesOperations.Delete(id);
